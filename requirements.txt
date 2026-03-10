@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+torch
+torch-geometric
+networkx
+numpy
+scipy
+shapely
