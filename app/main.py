@@ -1,3 +1,4 @@
+import asyncio
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
@@ -16,6 +17,8 @@ from app.services.gnn_graph_injector import GNNGraphInjector
 async def lifespan(app: FastAPI):
     # ---------- STARTUP ----------
     print("🚀 SafeRouteAI backend starting...")
+    
+    await asyncio.sleep(0)
 
     # 1️⃣ Load trained GNN model
     gnn_loader = GNNModelLoader()
@@ -56,7 +59,8 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="SafeRouteAI Backend",
     version="1.0.0",
-    lifespan=lifespan
+    lifespan=lifespan,
+    docs_url="/docs"
 )
 
 app.add_middleware(
